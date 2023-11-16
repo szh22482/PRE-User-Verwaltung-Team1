@@ -1,0 +1,30 @@
+@startuml
+
+title User-Management
+
+note "Values: \nUser: max123, Max, Mustermann,\nmax@muster.com, false, 10.09.2023, null, path/to/image \n\nRole: Administrator \n\nCountry: Deutschland, DE, +49, path/to/image" as N1
+
+class User {
+    - Identification
+    - Firstname
+    - Lastname
+    - E-Mail
+    - isDeleted
+    - Created
+    - Deleted
+    - UserImage
+}
+class Role {
+    - RoleName
+}
+class Country {
+    - CountryName
+    - CountryCode
+    - DialCode
+    - FlagImage
+}
+
+Country "1" -- "*" User
+User "*" -- "*" Role
+
+@enduml
