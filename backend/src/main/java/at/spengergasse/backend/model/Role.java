@@ -1,4 +1,4 @@
-package at.spengergasse.usermanagement.model;
+package at.spengergasse.backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,6 +17,6 @@ public class Role extends AbstractPersistable<Long>
 {
     @Enumerated(EnumType.STRING)
     private ERoles name;
-    @ManyToMany
-    private List<User> users;
+    @OneToMany
+    private List<UserRole> userRoles;
 }

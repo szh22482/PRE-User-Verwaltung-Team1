@@ -1,4 +1,4 @@
-package at.spengergasse.usermanagement.model;
+package at.spengergasse.backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

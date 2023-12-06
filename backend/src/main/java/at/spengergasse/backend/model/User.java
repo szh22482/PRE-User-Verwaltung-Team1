@@ -1,8 +1,8 @@
-package at.spengergasse.usermanagement.model;
+package at.spengergasse.backend.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -29,6 +29,6 @@ public class User extends AbstractPersistable<Long>
     private String userImage;
     @ManyToOne
     private CountryNumber countryNumber;
-    @ManyToMany
-    private List<Role> roles;
+    @OneToMany
+    private List<UserRole> roles;
 }

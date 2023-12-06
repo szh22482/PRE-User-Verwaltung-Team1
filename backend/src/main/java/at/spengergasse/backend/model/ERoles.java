@@ -1,4 +1,4 @@
-package at.spengergasse.usermanagement.model;
+package at.spengergasse.backend.model;
 
 public enum ERoles
 {
