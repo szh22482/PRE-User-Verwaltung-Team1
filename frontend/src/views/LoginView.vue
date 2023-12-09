@@ -9,11 +9,13 @@
                 <div class="form">
                     <v-text-body1>Email address</v-text-body1>
                     <div>
-                        <InputField v-model="email" inputType="text"></InputField>
+                        <InputField
+                        :model-value="email" @update:model-value="newValue => email = newValue" inputType="text"></InputField>
                     </div>
                     <v-text-body1>Password</v-text-body1>
                     <div>
-                        <InputField v-model="password" inputType="password"></InputField>
+                        <InputField 
+                        :model-value="password" @update:model-value="newValue => password = newValue" inputType="password"></InputField>
                     </div>
                 </div>
                 <div class="btn-div">
@@ -24,20 +26,17 @@
     </v-container>
 </template>
 
-<script setup>
+<script>
     import axios from 'axios';
     import InputField from '@/components/Input.vue';
     import Btn from '@/components/Button.vue';
     import { useRouter } from 'vue-router';
 
-</script>
-
-<script>
     export default {
         data() {
             return {
-            email: '',
-            password: '',
+                email: '',
+                password: '',
             };
         },
         components: {
@@ -45,26 +44,31 @@
             Btn,
         },
         methods: {
-            async login() {
+        async login() {
             try {
-                const response = true; // Replace this with your actual login logic
+                const email = this.email;
+                const password = this.password;
 
-                if (response) {
-                console.log('Login successful');
+                console.log(this.email, this.password)
 
-                // Redirect to the home page
-                this.$router.push({ name: 'Home' });
+                const response = await 
+                axios.get(`users/login?email=${email}&password=${encodeURIComponent(password)}`);
+                
+
+                if (response.status === 200 && response.data) {
+                    console.log('Login successful');
+                    this.$router.push({ name: 'Home' });
                 } else {
-                console.error('Login failed');
-                alert('Login failed. Please check your credentials.');
+                    console.error('Login failed');
+                    alert('Login failed. Please check your credentials.');
                 }
             } catch (error) {
                 console.error('Login error', error);
                 alert('An error occurred during login. Please try again later.');
             }
-            },
         },
-    };
+    },
+};
 </script>
 
 <style scoped>
